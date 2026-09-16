@@ -20,17 +20,17 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: S3에서 프라이빗으로 배포
-        run: |
-          # 소스 데이터 S3 버킷으로 업로드
-          aws s3 sync html/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
-          aws ssm send-command \
-            --instance-ids "${{ secrets.INSTANCE_ID }}" \
-            --document-name "AWS-RunShellScript" \
-            --parameters  "commands =[
-              \"sudo aws s3 sync s3://${{ secrets.S3_BUCKET_NAME }} /usr/share/nginx/html --delete\",
-              \"sudo chown -R ec2-user:nginx /usr/share/nginx/html\",
-              \"sudo systemctl reload nginx\"
-            ]" \
-            --region "${{ secrets.AWS_REGION }}" \
-            --comment "Sync S3 bucket to nginx html directory"
+      # - name: S3에서 프라이빗으로 배포
+      #   run: |
+      #     # 소스 데이터 S3 버킷으로 업로드
+      #     aws s3 sync html/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+      #     aws ssm send-command \
+      #       --instance-ids "${{ secrets.INSTANCE_ID }}" \
+      #       --document-name "AWS-RunShellScript" \
+      #       --parameters  "commands =[
+      #         \"sudo aws s3 sync s3://${{ secrets.S3_BUCKET_NAME }} /usr/share/nginx/html --delete\",
+      #         \"sudo chown -R ec2-user:nginx /usr/share/nginx/html\",
+      #         \"sudo systemctl reload nginx\"
+      #       ]" \
+      #       --region "${{ secrets.AWS_REGION }}" \
+      #       --comment "Sync S3 bucket to nginx html directory"
