@@ -30,14 +30,14 @@ jobs:
           file: ./nginx/Dockerfile
           push: true
           #(중요) 이미지명 정의(태그 자동 완성)
-          tags: ${{ secrets.DOCKER_USERNAME }}/nginx:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nginx:${{ github.sha }}
 
 
       - name: 쿠버네티스 파일의 이미지 태그 갱신 및 Git push
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          sed -i "s|image: ${{ secrets.DOCKER_USERNAME }}/nginx:.*|image: ${{ secrets.DOCKER_USERNAME }}/nginx:${{ github.sha }}|g" ./k8s/std20-deployment.yaml
+          sed -i "s|image: ${{ secrets.DOCKER_HUB_USERNAME }}/nginx:.*|image: ${{ secrets.DOCKER_HUB_USERNAME }}/nginx:${{ github.sha }}|g" ./k8s/std20-deployment.yaml
 
           git add ./k8s/std20-deployment.yaml
           git commit -m "Update nginx image tag to ${{ github.sha }}"
