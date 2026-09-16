@@ -55,13 +55,13 @@ metadata:
           "urlRewriteConfig": {
             "rewrites": [
               {
-                "regex": "^\\/nginx(?:\\/(.*))?$",
+                "regex": "^\\/nginx\\/?(.*)$",
                 "replace": "/$1"
               }
             ]
           }
         }
-      ]
+      ] 
 spec:
   ingressClassName: alb
   rules:
