@@ -43,6 +43,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: std20-alb-basic
+  namespace: default
   annotations:    # 보안 그룹 등 AWS 에 대한 설정들
     alb.ingress.kubernetes.io/scheme: internet-facing # 외부 로드 밸런서 (ip부여) / internal(사설)
     alb.ingress.kubernetes.io/target-type: ip 
