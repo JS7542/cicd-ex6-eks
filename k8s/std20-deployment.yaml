@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: std20-nginx-deployment
+  namespace: default
 spec:
   replicas: 2
   selector:
@@ -25,6 +26,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: std20-nginx-service
+  namespace: default
 spec:
   type: LoadBalancer
   selector:
