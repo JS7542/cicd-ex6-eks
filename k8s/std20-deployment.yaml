@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: std20-nginx-container
-        image: smile1101/nginx:5026d18a0f0c224e51d5423806b0ba24db7baeb5
+        image: smile1101/nginx:c0e78b1b3e93575c682e52a5f0b34af634616538
         ports:
           - containerPort: 80
 --- 
